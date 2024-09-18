@@ -15,16 +15,16 @@ public class GroupAnagrams {
         //TC = O(n * m+mlogm) + O(n)
         HashMap<String, List<String>> hm = new HashMap<>();
         List<List<String>> lans = new ArrayList<>();
-        for(int i = 0; i<strs.length; i++){
-            char[] chArr = strs[i].toCharArray();
+        for(String s:strs){
+            char[] chArr = s.toCharArray();
             Arrays.sort(chArr);
             String str = String.valueOf(chArr);
             if(hm.containsKey(str)){
-                hm.get(str).add(strs[i]);
+                hm.get(str).add(s);
             }
             else{
                 List<String> ans = new ArrayList<>();
-                ans.add(strs[i]);
+                ans.add(s);
                 lans.add(ans);
                 hm.put(str, ans);
             }
