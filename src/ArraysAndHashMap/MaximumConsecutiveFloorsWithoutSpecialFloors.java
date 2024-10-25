@@ -10,6 +10,12 @@ public class MaximumConsecutiveFloorsWithoutSpecialFloors {
 
     private static int maxConsecutive(int bottom, int top, int[] special) {
         //TC = O(nlogn), SC = O(1)
+        /*
+        Sort special floors.
+        The max consecutive floors between special is A[i] - A[i-1] - 1
+        The top consecutive floors is top - A[n - 1]
+        The bottom consecutive floors is A[0] - bottom
+         */
         Arrays.sort(special);
         int maxLength = 0, i = bottom;
         for(int j = 0; j<special.length; j++){
