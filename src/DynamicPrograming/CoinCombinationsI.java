@@ -1,4 +1,4 @@
-//package DynamicPrograming;
+package DynamicPrograming;
 import java.util.*;
 
 //https://cses.fi/problemset/task/1635
