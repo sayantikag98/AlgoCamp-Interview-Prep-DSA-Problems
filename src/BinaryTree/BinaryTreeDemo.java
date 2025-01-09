@@ -1,5 +1,4 @@
 package BinaryTree;
-
 import java.util.*;
 class Node <T>{
     T val;
@@ -57,35 +56,27 @@ class BinaryTree<T> {
 
     Node<T> binaryTreeFromArray(List<T> arr){
         if(arr.isEmpty() || arr.getFirst() == null) return null;
-        int n = arr.size();
-        List<Node<T>> nodeList = new ArrayList<>(n);
+        Queue<Node<T>> nodeList = new LinkedList<>();
+        int idx = 0;
         Node<T> root = new Node<>(arr.getFirst());
-        nodeList.add(root);
-        for(int i = 0; 2*i<n; i++){
-            Node<T> curr = nodeList.get(i);
-            if(curr != null){
-                int leftIdx = 2*i+1, rightIdx = 2*i+2;
-                if(leftIdx < n){
-                    if(arr.get(leftIdx) != null){
-                        curr.left = new Node<>(arr.get(leftIdx));
-                    }
-                    else{
-                        curr.left = null;
-                    }
-                    nodeList.add(curr.left);
+        nodeList.offer(root);
+
+        while(!nodeList.isEmpty()){
+            int size = nodeList.size();
+            while(size-->0){
+                Node<T> curr = nodeList.poll();
+                idx++;
+                if(idx < arr.size() && arr.get(idx) != null){
+                    Node<T> newNode = new Node<>(arr.get(idx));
+                    curr.left = newNode;
+                    nodeList.offer(newNode);
                 }
-                if(rightIdx < n){
-                    if(arr.get(rightIdx) != null){
-                        curr.right = new Node<>(arr.get(rightIdx));
-                    }
-                    else{
-                        curr.right = null;
-                    }
-                    nodeList.add(curr.right);
+                idx++;
+                if(idx < arr.size() && arr.get(idx) != null){
+                    Node<T> newNode = new Node<>(arr.get(idx));
+                    curr.right = newNode;
+                    nodeList.offer(newNode);
                 }
-            }
-            else{
-                nodeList.add(null);
             }
         }
         return root;
@@ -115,7 +106,7 @@ public class BinaryTreeDemo{
         bt.levelOrder(root);
         System.out.println();
 
-        Node<Integer> root1 = bt.binaryTreeFromArray(Arrays.asList(1,2,3,4,5,6,7,null,null,8,null,null,null,9,10));
+        Node<Integer> root1 = bt.binaryTreeFromArray(Arrays.asList(1,2,3,null,null,4,5));
         bt.preOrder(root1);
         System.out.println();
         bt.inOrder(root1);
@@ -133,6 +124,16 @@ public class BinaryTreeDemo{
         bt.postOrder(root2);
         System.out.println();
         bt.levelOrder(root2);
+        System.out.println();
+
+        Node<Integer> root3 = bt.binaryTreeFromArray(Arrays.asList(1,7,9,2,6,null,9,null,null,5,11,5));
+        bt.preOrder(root3);
+        System.out.println();
+        bt.inOrder(root3);
+        System.out.println();
+        bt.postOrder(root3);
+        System.out.println();
+        bt.levelOrder(root3);
         System.out.println();
     }
 }

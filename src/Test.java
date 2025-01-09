@@ -13,5 +13,10 @@ public class Test {
         l.add(2);
         l.addFirst(0);
         System.out.println(l);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(10);
+        System.out.println(Integer.parseInt("-10"));
+
     }
 }

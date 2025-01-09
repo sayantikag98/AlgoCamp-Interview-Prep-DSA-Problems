@@ -19,6 +19,7 @@ public class MaximumWidthOfBinaryTree {
         (this method of indexing I felt was better that of Striver)
         then at every level maximize the position diff (position diff for one node is that node's position and for more than 1 node the positional difference between the last node and first node)
          */
+        //TC = O(n), SC = O(n)
         if(root == null) return 0;
         int max = 1;
         //MADE MISTAKE
